@@ -38,7 +38,7 @@ export default function Login() {
 			}
 			setRequestLoading(false);
 			localStorage.setItem('user', JSON.stringify(response?.data?.data));
-			console.log(response.data?.data);
+
 			setUser(response?.data?.data[0]);
 			router.push(`/dashboard/${response?.data?.data[0].id}`);
 		} catch (error) {
@@ -47,13 +47,11 @@ export default function Login() {
 		} finally {
 		}
 	};
-	console.log(user);
 
 	useEffect(() => {
 		async function getItem() {
 			const userItem = localStorage.getItem('user');
 			if (userItem) {
-				console.log(JSON.parse(userItem));
 				const userParse = JSON.parse(userItem);
 				setUser(userParse[0]);
 				router.push(`/dashboard/${userParse[0].id}`);
@@ -63,7 +61,7 @@ export default function Login() {
 		}
 		getItem();
 	}, []);
-	console.log(user);
+
 	return (
 		<S.Container>
 			{' '}

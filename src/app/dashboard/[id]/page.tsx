@@ -7,13 +7,10 @@ import Header from './components/Header';
 import InputFilter from './components/InputFilter';
 import Items from './components/Items';
 import ModalTransAction from './components/ModalTransAction';
-import axios from 'axios';
+
 import {MoneyProvider} from '../../provider';
-import {MoneyContext, MoneyContextValue} from '@/app/provider';
 
 export default function Dashboard({params}: {params: {id: string}}) {
-	const {user, setUser} = useContext(MoneyContext) as MoneyContextValue;
-	console.log(params);
 	return (
 		<MoneyProvider>
 			<S.Container>
