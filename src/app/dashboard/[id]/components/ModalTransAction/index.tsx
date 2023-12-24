@@ -74,7 +74,7 @@ export default function ModalTransAction({id}: {id: string}) {
 					<S.InputCurrency
 						value={price}
 						onChangeValue={(event, originalValue, maskedValue) => {
-							console.log(event, originalValue, maskedValue);
+							setPrice(Number(originalValue));
 						}}
 					/>
 					<S.Input
