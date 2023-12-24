@@ -16,7 +16,7 @@ export default function ModalTransAction({id}: {id: string}) {
 	const [description, setDescription] = useState('');
 	const [price, setPrice] = useState(0);
 	const [categories, setCategories] = useState('');
-	console.log(id);
+
 	const OPTIONSBUTTON = [
 		{
 			name: 'Entrada',
@@ -71,10 +71,11 @@ export default function ModalTransAction({id}: {id: string}) {
 						value={description}
 						onChange={(e) => setDescription(e.target.value)}
 					/>
-					<S.Input
-						placeholder='Preço'
+					<S.InputCurrency
 						value={price}
-						onChange={(e) => setPrice(Number(e.target.value))}
+						onChangeValue={(event, originalValue, maskedValue) => {
+							console.log(event, originalValue, maskedValue);
+						}}
 					/>
 					<S.Input
 						placeholder='Categoria'

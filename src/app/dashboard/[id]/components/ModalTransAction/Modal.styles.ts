@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {CurrencyInput} from 'react-currency-mask';
 interface Modal {
 	open: boolean;
 }
@@ -127,5 +128,21 @@ export const ButtonSubmit = styled.button<PropsOpacity>`
 
 	&:hover {
 		background: #00874f;
+	}
+`;
+
+export const InputCurrency = styled(CurrencyInput)`
+	display: flex;
+	padding: 16px;
+	align-items: flex-start;
+	gap: 8px;
+	align-self: stretch;
+	border-radius: 6px;
+	background: #121214;
+	border: none;
+	color: #fff;
+
+	&:focus {
+		outline: 1px solid #00b37e;
 	}
 `;

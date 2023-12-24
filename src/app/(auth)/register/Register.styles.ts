@@ -75,7 +75,7 @@ export const Title = styled.h3`
 	justify-content: center;
 	text-align: center;
 `;
-export const ContentBody = styled.div`
+export const ContentBody = styled.form`
 	padding: 24px;
 	width: 400px;
 	display: flex;
@@ -87,7 +87,7 @@ export const Input = styled.input`
 	padding: 16px;
 	align-items: flex-start;
 	gap: 8px;
-	align-self: stretch;
+	width: 100%;
 	border-radius: 6px;
 	background: #121214;
 	border: none;
@@ -171,4 +171,12 @@ export const RegisterInfo = styled.div`
 			opacity: 0.8;
 		}
 	}
+`;
+export const ErrorMessage = styled.p`
+	color: #f75a68;
+	font-size: 12px;
+`;
+export const ContentInput = styled.div`
+	position: relative;
+	width: 368px;
 `;

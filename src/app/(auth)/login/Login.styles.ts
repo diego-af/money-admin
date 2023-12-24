@@ -75,7 +75,7 @@ export const Title = styled.h3`
 	justify-content: center;
 	text-align: center;
 `;
-export const ContentBody = styled.div`
+export const ContentBody = styled.form`
 	padding: 24px;
 	width: 400px;
 	display: flex;
@@ -83,6 +83,7 @@ export const ContentBody = styled.div`
 	gap: 16px;
 `;
 export const Input = styled.input`
+	width: 100%;
 	display: flex;
 	padding: 16px;
 	align-items: flex-start;
@@ -129,7 +130,7 @@ interface PropsOpacity {
 }
 export const ButtonSubmit = styled.button<PropsOpacity>`
 	display: flex;
-	width: 100%;
+	flex: 1;
 	padding: 16px 32px;
 	justify-content: center;
 	align-items: center;
@@ -171,4 +172,13 @@ export const RegisterInfo = styled.div`
 			opacity: 0.8;
 		}
 	}
+`;
+
+export const ErrorMessage = styled.p`
+	color: #f75a68;
+	font-size: 12px;
+`;
+export const ContentInput = styled.div`
+	position: relative;
+	width: 367px;
 `;

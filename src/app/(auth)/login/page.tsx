@@ -9,22 +9,37 @@ import {toast} from 'sonner';
 import Link from 'next/link';
 import Image from 'next/image';
 import {useRouter} from 'next/navigation';
+import {zodResolver} from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import {useForm} from 'react-hook-form';
+
+const schema = z.object({
+	email: z.string().email('Email inválido'),
+	password: z.string().min(6, 'A senha deve conter mais de 6 caracteres')
+});
+
+type Input = {
+	email: string;
+	password: string;
+};
 export default function Login() {
 	const router = useRouter();
 	const {requestLoading, setRequestLoading, user, setUser} = useContext(
 		MoneyContext
 	) as MoneyContextValue;
 
-	const [password, setPassword] = useState('');
-	const [email, setEmail] = useState('');
-
-	const handleRequest = async () => {
+	const {
+		register,
+		handleSubmit,
+		watch,
+		formState: {errors}
+	} = useForm<Input>({
+		resolver: zodResolver(schema)
+	});
+	const handleRequest = async (data: Input) => {
 		setRequestLoading(true);
-		if (email == '' || password == '') {
-			toast.error('Preencha todos os campos');
-			setRequestLoading(false);
-			return;
-		}
+		const {email, password} = data;
+		console.log(data);
 		try {
 			const response = await axios.post('/api/login', {
 				email,
@@ -65,29 +80,30 @@ export default function Login() {
 	return (
 		<S.Container>
 			{' '}
-			<S.ContentBody>
+			<S.ContentBody onSubmit={handleSubmit((data) => handleRequest(data))}>
 				<S.Title>
 					Login {'  '}{' '}
 					<Image src='/money.svg' alt='Logo' width={32} height={32} />
 				</S.Title>
 
-				<S.Input
-					placeholder='Email'
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-				<S.Input
-					placeholder='Senha'
-					type='password'
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
+				<S.ContentInput>
+					<S.Input placeholder='Email' {...register('email')} />
+					{errors.email && (
+						<S.ErrorMessage>{errors.email.message}</S.ErrorMessage>
+					)}
+				</S.ContentInput>
+				<S.ContentInput>
+					<S.Input
+						placeholder='Senha'
+						type='password'
+						{...register('password')}
+					/>
+					{errors.password && (
+						<S.ErrorMessage>{errors.password.message}</S.ErrorMessage>
+					)}
+				</S.ContentInput>
 
-				<S.ButtonSubmit
-					disabled={requestLoading}
-					onClick={handleRequest}
-					isopacity={requestLoading}
-				>
+				<S.ButtonSubmit disabled={requestLoading} isopacity={requestLoading}>
 					{requestLoading ? (
 						<ReactLoading type='spin' color='#fff' height={20} width={20} />
 					) : (
