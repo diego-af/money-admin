@@ -75,9 +75,11 @@ export default function ModalTransAction({id}: {id: string}) {
 					/>
 					<S.InputCurrency
 						value={price}
-						onChangeValue={(event, originalValue, maskedValue) => {
-							setPrice(Number(originalValue));
-						}}
+						placeholder='Please enter a number'
+						prefix={'R$ '}
+						defaultValue={1000}
+						decimalsLimit={2}
+						onValueChange={(value, name) => setPrice(Number(value))}
 					/>
 					<S.Input
 						placeholder='Data da transação'

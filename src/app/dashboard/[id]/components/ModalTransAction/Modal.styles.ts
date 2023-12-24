@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {CurrencyInput} from 'react-currency-mask';
+import CurrencyInput from 'react-currency-input-field';
 interface Modal {
 	open: boolean;
 }
