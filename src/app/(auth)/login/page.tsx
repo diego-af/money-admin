@@ -39,7 +39,7 @@ export default function Login() {
 	const handleRequest = async (data: Input) => {
 		setRequestLoading(true);
 		const {email, password} = data;
-		console.log(data);
+
 		try {
 			const response = await axios.post('/api/login', {
 				email,

@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
 
 	const {description, price, type, categories, date, transactionId} =
 		transactions;
-
+	const dateNow = new Date(date).toISOString();
 	try {
 		const transactionsAdd = await prisma.transaction.create({
 			data: {
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 				price: price,
 				type: type,
 				category: categories,
-				date: date,
+				date: dateNow,
 				transactionId: transactionId
 			}
 		});

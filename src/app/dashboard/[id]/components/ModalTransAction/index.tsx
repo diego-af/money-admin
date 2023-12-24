@@ -16,6 +16,7 @@ export default function ModalTransAction({id}: {id: string}) {
 	const [description, setDescription] = useState('');
 	const [price, setPrice] = useState(0);
 	const [categories, setCategories] = useState('');
+	const [date, setDate] = useState('');
 
 	const OPTIONSBUTTON = [
 		{
@@ -38,7 +39,7 @@ export default function ModalTransAction({id}: {id: string}) {
 				price,
 				type,
 				categories,
-				date: new Date().toISOString(),
+				date: date,
 				transactionId: id
 			});
 			toast.success('Transação adicionada com sucesso!');
@@ -48,6 +49,7 @@ export default function ModalTransAction({id}: {id: string}) {
 			setPrice(0);
 			setCategories('');
 			setType(null);
+			setDate('');
 		} catch (error) {
 			console.error(error);
 			setRequestLoading(false);
@@ -76,6 +78,12 @@ export default function ModalTransAction({id}: {id: string}) {
 						onChangeValue={(event, originalValue, maskedValue) => {
 							setPrice(Number(originalValue));
 						}}
+					/>
+					<S.Input
+						placeholder='Data da transação'
+						type='date'
+						value={date}
+						onChange={(e) => setDate(e.target.value)}
 					/>
 					<S.Input
 						placeholder='Categoria'

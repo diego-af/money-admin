@@ -9,10 +9,8 @@ export default function Dashboard() {
 
 	useEffect(() => {
 		const getItem = () => {
-			console.log('aqui');
 			const userItem = localStorage.getItem('user');
 			if (userItem) {
-				console.log(JSON.parse(userItem));
 				const userParse = JSON.parse(userItem);
 				setUser(userParse[0]);
 				router.push(`/dashboard/${userParse[0].id}`);

@@ -4,7 +4,7 @@ import {NextRequest, NextResponse} from 'next/server';
 export async function POST(request: NextRequest) {
 	const user = await request.json();
 	const {email, password} = user;
-	console.log(email, password);
+
 	try {
 		const trasactions = await prisma.user.findMany({
 			where: {
@@ -12,7 +12,6 @@ export async function POST(request: NextRequest) {
 				password: password
 			}
 		});
-		console.log(trasactions);
 		return NextResponse.json({data: trasactions, mensagem: true});
 	} catch (error) {
 		console.log(error);

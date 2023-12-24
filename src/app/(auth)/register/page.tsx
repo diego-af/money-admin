@@ -54,11 +54,11 @@ export default function Register() {
 				setRequestLoading(false);
 				return;
 			}
-			console.log(response.data);
+
 			router.push('/login');
 			setRequestLoading(false);
 		} catch (error) {
-			console.error(error);
+			toast.error('Erro ao cadastrar');
 			setRequestLoading(false);
 		} finally {
 		}
