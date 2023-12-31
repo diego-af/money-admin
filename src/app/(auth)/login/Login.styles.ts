@@ -97,6 +97,9 @@ export const Input = styled.input`
 	&:focus {
 		outline: 1px solid #00b37e;
 	}
+	@media (max-width: 578px) {
+		width: 90%;
+	}
 `;
 export const ContentButtonOptions = styled.div`
 	display: flex;
@@ -122,6 +125,9 @@ export const ButtonEntry = styled.button<PropsSelect>`
 	font-weight: 400;
 	line-height: 160%;
 	cursor: pointer;
+	@media (max-width: 578px) {
+		padding: 8px 12px;
+	}
 `;
 export const ButtonOut = styled(ButtonEntry)``;
 
@@ -180,5 +186,8 @@ export const ErrorMessage = styled.p`
 `;
 export const ContentInput = styled.div`
 	position: relative;
-	width: 367px;
+	width: 368px;
+	@media (max-width: 578px) {
+		width: 100%;
+	}
 `;

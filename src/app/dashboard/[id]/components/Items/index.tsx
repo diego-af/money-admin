@@ -6,6 +6,7 @@ import {ConvertFunctionMoney} from '@/app/hooks/ConvertMoneyBRL';
 import ReactLoading from 'react-loading';
 import {MoneyContext, MoneyContextValue} from '@/app/provider';
 import {parseISO, format} from 'date-fns';
+import {Trash2Icon} from 'lucide-react';
 
 export default function Items({id}: {id: string}) {
 	const [loadingRefresh, setloadingRefresh] = useState(false);
@@ -34,6 +35,21 @@ export default function Items({id}: {id: string}) {
 	useEffect(() => {
 		getTransactions();
 	}, [openModal]);
+
+	const deleteTransaction = async (id: string) => {
+		setRequestLoading(true);
+		try {
+			const response = await axios.delete(`/api/deletetransaction/${id}`);
+
+			if (response.data) {
+				getTransactions();
+			}
+		} catch (error) {
+			console.error(error);
+		} finally {
+			setRequestLoading(false);
+		}
+	};
 
 	const formatDate = (date: string) => {
 		const formatedDate = parseISO(date);
@@ -64,6 +80,12 @@ export default function Items({id}: {id: string}) {
 			</S.LoadingSimulation>
 			{transactions?.map((transaction) => (
 				<S.Item>
+					<Trash2Icon
+						color='#b33434'
+						size={20}
+						className='cursor-pointer'
+						onClick={() => deleteTransaction(String(transaction.id))}
+					/>
 					<S.Description>{transaction.description}</S.Description>
 
 					<S.Value isColor={transaction.type === 'entry'}>

@@ -96,6 +96,9 @@ export const Input = styled.input`
 	&:focus {
 		outline: 1px solid #00b37e;
 	}
+	@media (max-width: 578px) {
+		width: 90%;
+	}
 `;
 export const ContentButtonOptions = styled.div`
 	display: flex;
@@ -148,6 +151,9 @@ export const ButtonSubmit = styled.button<PropsOpacity>`
 	&:hover {
 		background: #00874f;
 	}
+	@media (max-width: 578px) {
+		padding: 8px 12px;
+	}
 `;
 export const RegisterInfo = styled.div`
 	display: flex;
@@ -179,4 +185,7 @@ export const ErrorMessage = styled.p`
 export const ContentInput = styled.div`
 	position: relative;
 	width: 368px;
+	@media (max-width: 578px) {
+		width: 100%;
+	}
 `;
